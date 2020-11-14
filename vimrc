@@ -43,6 +43,8 @@ Plug 'preservim/nerdcommenter'
 " Rainbow parentheses
 Plug 'frazrepo/vim-rainbow'
 
+" ALE
+Plug 'dense-analysis/ale'
 
 " coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -125,7 +127,7 @@ let g:pydocstring_formatter = 'google'
 
 " vimtex setting
 let g:tex_flavor = 'latex'
-
+let g:vimtex_context_pdf_viewer = 'qpdfview'
 
 
 " Coc.nvim settings from vimtex guy
@@ -188,3 +190,10 @@ nnoremap <leader>es :UltiSnipsEdit!<cr>
 
 "Vimtex
 let g:vimtex_fold_enabled = 1
+let g:vimtex_grammar_vlty = {
+            \'lt_command': 'languagetool',
+            \'show_suggestions': 1,
+            \}
+
+            "\'lt_directory': '/snap/bin/languagetool',
+
