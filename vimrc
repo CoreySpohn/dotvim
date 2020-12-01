@@ -84,6 +84,10 @@ set copyindent
 set preserveindent
 silent! set breakindent
 
+" Spelling command
+nnoremap <C-s> :set spell spelllang=en_us<CR>
+"set spell spelllang = en_us
+
 
 " Flag whitespace
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -128,7 +132,21 @@ let g:pydocstring_formatter = 'google'
 " vimtex setting
 let g:tex_flavor = 'latex'
 let g:vimtex_context_pdf_viewer = 'qpdfview'
+let g:vimtex_compiler_latexmk = {
+            \ 'build_dir' : 'build',
+            \}
+let g:vimtex_fold_enabled = 1
 
+" ALE settings
+let g:ale_linters = {
+            \'python': ['pylint'],
+            \'tex': ['lacheck', 'chktex']}
+
+" To add more just make it '--disable C0301, C0111, ...' no need for a list
+let g:ale_python_pylint_options = '--disable C0301' 
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
 " Coc.nvim settings from vimtex guy
 let g:coc_global_extensions = [
@@ -187,13 +205,3 @@ let g:UltiSnipsRemoveSelectModeMappings = 0
 let g:UltiSnipsSnippetDirectories = [('~/.vim/UltiSnips')]
 
 nnoremap <leader>es :UltiSnipsEdit!<cr>
-
-"Vimtex
-let g:vimtex_fold_enabled = 1
-let g:vimtex_grammar_vlty = {
-            \'lt_command': 'languagetool',
-            \'show_suggestions': 1,
-            \}
-
-            "\'lt_directory': '/snap/bin/languagetool',
-
