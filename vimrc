@@ -41,7 +41,7 @@ Plug 'SirVer/ultisnips'
 Plug 'preservim/nerdcommenter'
 
 " Rainbow parentheses
-Plug 'frazrepo/vim-rainbow'
+Plug 'luochen1990/rainbow'
 
 " ALE
 Plug 'dense-analysis/ale'
@@ -86,6 +86,8 @@ silent! set breakindent
 
 " Spelling command
 nnoremap <C-s> :set spell spelllang=en_us<CR>
+autocmd FileType text setlocal spell spelllang=en_us
+autocmd FileType tex setlocal spell spelllang=en_us
 "set spell spelllang = en_us
 
 
@@ -120,7 +122,16 @@ nmap <Leader>h :History<CR>
 
 " Enable global rainbow parentheses
 let g:rainbow_active = 1
-
+" Fix rainbow parentheses conflict with spell check in txt files
+let g:rainbow_conf = {
+\	'separately': {
+\		'*': {},
+\		'text': {
+\			'parentheses_options': 'contains=@NoSpell',
+\		},
+\	},
+\}
+autocmd FileType text let g:rainbow_active = 0
 
 " Black configuration
 " Run black on save
