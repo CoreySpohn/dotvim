@@ -56,13 +56,18 @@ Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Black
-Plug 'psf/black', { 'branch': 'stable' } 
+"Plug 'psf/black', { 'branch': 'stable' } 
 
 " Doc string generator
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install'}
 
 " LaTeX plugin
 Plug 'lervag/vimtex'
+
+Plug 'KeitaNakamura/tex-conceal.vim'
+    set conceallevel=1
+    let g:tex_conceal='abdmg'
+    hi Conceal ctermbg=none
 
 " Indents
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -94,8 +99,16 @@ silent! set breakindent
 nnoremap <C-s> :set spell spelllang=en_us<CR>
 autocmd FileType text setlocal spell spelllang=en_us
 autocmd FileType tex setlocal spell spelllang=en_us
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 "set spell spelllang = en_us
 
+" FZF fuzzy finder
+nnoremap <leader>s :<C-u>FZF~<CR>
+
+" Git integration
+nmap <leader>gs :G<CR>
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
 
 " Flag whitespace
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -121,6 +134,7 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Wrap text after a certain number of characters
 au BufRead,BufNewFile *.txt set textwidth=100
+au BufRead,BufNewFile *.tex set textwidth=100
 
 " Buffer finder help
 nmap <Leader>b :Buffers<CR>
@@ -222,3 +236,8 @@ let g:UltiSnipsRemoveSelectModeMappings = 0
 let g:UltiSnipsSnippetDirectories = [('~/.vim/UltiSnips')]
 
 nnoremap <leader>es :UltiSnipsEdit!<cr>
+
+
+"
+" MACROS
+"
