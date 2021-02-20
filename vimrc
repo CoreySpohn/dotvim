@@ -58,16 +58,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Black
 "Plug 'psf/black', { 'branch': 'stable' } 
 
-" Doc string generator
-Plug 'heavenshell/vim-pydocstring', { 'do': 'make install'}
-
 " LaTeX plugin
 Plug 'lervag/vimtex'
-
-Plug 'KeitaNakamura/tex-conceal.vim'
-    set conceallevel=1
-    let g:tex_conceal='abdmg'
-    hi Conceal ctermbg=none
 
 " Indents
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -162,11 +154,14 @@ let g:pydocstring_formatter = 'google'
 
 " vimtex setting
 let g:tex_flavor = 'latex'
-let g:vimtex_context_pdf_viewer = 'qpdfview'
+let g:vimtex_view_method='zathura'
 let g:vimtex_compiler_latexmk = {
             \ 'build_dir' : 'build',
             \}
 let g:vimtex_fold_enabled = 1
+set conceallevel=1
+let g:tex_conceal='abdmg'
+hi Conceal ctermbg=none
 
 " ALE settings
 let g:ale_linters = {
@@ -184,18 +179,16 @@ let g:coc_global_extensions = [
         \ 'coc-vimtex',
         \ 'coc-omni',
         \ 'coc-snippets',
-        \ 'coc-python',
+        \ 'coc-pyright',
         \ 'coc-json',
         \ 'coc-ultisnips',
         \]
 
-inoremap <silent><expr> <c-space> coc#refresh()
-
 inoremap <expr><cr>    pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+inoremap <silent><expr> <c-space> coc#refresh()
 
-imap <silent> <c-u>     <plug>(coc-snippets-expand)
 
 nmap <silent> <leader>ld <plug>(coc-definition)zv
 nmap <silent> <leader>lr <plug>(coc-references)
@@ -225,17 +218,26 @@ if exists('*CocActionAsync')
                 autocmd CursorHold * silent call CocActionAsync('highlight')
         augroup END
 endif
+imap <silent> <c-u>     <plug>(coc-snippets-expand)
 
 
-" ultisnips auto complete with tab
-let g:UltiSnipsExpandTrigger="<nop>"
+" ultisnips auto complete with tab, jump forward with tab, move down with
+" <c-j>, move up with <c-k>
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+
+" Expand with <c-u> and <c-y>, jump with <c-j> and <c-k>, move with tabs
+"let g:UltiSnipsExpandTrigger="<nop>"
 "let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsRemoveSelectModeMappings = 0
+"let g:UltiSnipsJumpForwardTrigger="<c-j>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+"let g:UltiSnipsRemoveSelectModeMappings = 0
 let g:UltiSnipsSnippetDirectories = [('~/.vim/UltiSnips')]
+"let g:UltiSnipsSnippetDirectories = [('~/.vim/UltiSnips')]
 
-nnoremap <leader>es :UltiSnipsEdit!<cr>
+"nnoremap <leader>es :UltiSnipsEdit!<cr>
 
 
 "
