@@ -185,8 +185,8 @@ let g:coc_global_extensions = [
         \]
 
 inoremap <expr><cr>    pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
-inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+"inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
+"inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 inoremap <silent><expr> <c-space> coc#refresh()
 
 

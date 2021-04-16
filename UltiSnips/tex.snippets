@@ -116,6 +116,115 @@ snippet " "Quotes" A
 \`\`${1:${VISUAL}}''${0}
 endsnippet
 
+# Shorthand for time derivative
+snippet dot "dot" w
+\\dot{$1}$0
+endsnippet
+# Shorthand for second order time derivative
+snippet ddot "ddot" w
+\\ddot{$1}$0
+endsnippet
+
+# GREEK LETTER SNIPPETS
+
+snippet alp "alpha" w
+\\alpha$0
+endsnippet
+snippet bet "beta" w
+\\beta$0
+endsnippet
+snippet gam "gamma" w
+\\gamma$0
+endsnippet
+snippet del "delta" w
+\\delta$0
+endsnippet
+snippet eps "epsilon" w
+\\epsilon$0
+endsnippet
+snippet the "theta" w
+\\theta$0
+endsnippet
+snippet lam "lambda" w
+\\lambda$0
+endsnippet
+snippet mu "mu" w
+\\mu$0
+endsnippet
+snippet nu "nu" w
+\\nu$0
+endsnippet
+snippet pi "pi" w
+\\pi$0
+endsnippet
+snippet tau "tau" w
+\\tau$0
+endsnippet
+snippet rho "rho" w
+\\rho$0
+endsnippet
+snippet sig "sigma" w
+\\sigma$0
+endsnippet
+snippet tau "tau" w
+\\tau$0
+endsnippet
+snippet phi "phi" w
+\\phi$0
+endsnippet
+snippet ome "omega" w
+\\omega$0
+endsnippet
+# Capital Greek alphabet
+snippet Alp "Alpha" w
+\\Alpha$0
+endsnippet
+snippet Bet "Beta" w
+\\Beta$0
+endsnippet
+snippet Gam "Gamma" w
+\\Gamma$0
+endsnippet
+snippet Del "Delta" w
+\\Delta$0
+endsnippet
+snippet Eps "Epsilon" w
+\\Epsilon$0
+endsnippet
+snippet The "Theta" w
+\\Theta$0
+endsnippet
+snippet Lam "Lambda" w
+\\Lambda$0
+endsnippet
+snippet Mu "Mu" w
+\\Mu$0
+endsnippet
+snippet Nu "Nu" w
+\\Nu$0
+endsnippet
+snippet Pi "Pi" w
+\\Pi$0
+endsnippet
+snippet Tau "Tau" w
+\\Tau$0
+endsnippet
+snippet Rho "Rho" w
+\\Rho$0
+endsnippet
+snippet Sig "Sigma" w
+\\Sigma$0
+endsnippet
+snippet Tau "Tau" w
+\\Tau$0
+endsnippet
+snippet Phi "Phi" w
+\\Phi$0
+endsnippet
+snippet Ome "Omega" w
+\\Omega$0
+endsnippet
+
 # gillescastel snippets
 global !p
 def math():
@@ -389,6 +498,14 @@ endsnippet
 
 snippet prod "product" w
 \prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
+endsnippet
+
+snippet dxdt "dx/dt" w
+\frac{\mathrm{d}$1}{\mathrm{d}t}$0
+endsnippet
+
+snippet ddt "d/dt" w
+\frac{\mathrm{d}}{\mathrm{d}t}$0
 endsnippet
 
 snippet part "d/dx" w
