@@ -1,8 +1,10 @@
 extends tex-templates
 
 global !p
-texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z']]
-texIgnoreMathZones = ['texMathText']
+#texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z']]
+#texIgnoreMathZones = ['texMathText']
+texMathZones = ['texMathZone' + x for x in ['', 'X', 'XX', 'Env', 'EnvStarred', 'Ensured']]
+texIgnoreMathZones = ['texMathTextArg']
 texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
 texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
 ignore = texIgnoreMathZoneIds[0]
@@ -35,7 +37,7 @@ def create_vmatrix(snip):
 
 		final_str += " \\\\\\\n"
 
-	final_str += old_spacing + "\\end{vmatrix}\n$0"
+	final_str += old_spacing + "\\end{vmatrix}$0"
 
 	snip.expand_anon(final_str)
 def create_bmatrix(snip):
@@ -60,7 +62,7 @@ def create_bmatrix(snip):
 
 		final_str += " \\\\\\\n"
 
-	final_str += old_spacing + "\\end{bmatrix}\n$0"
+	final_str += old_spacing + "\\end{bmatrix}$0"
 
 	snip.expand_anon(final_str)
 
@@ -125,104 +127,148 @@ snippet ddot "ddot" w
 \\ddot{$1}$0
 endsnippet
 
-# GREEK LETTER SNIPPETS
+# Bold math text
+snippet mbf "Bold math"
+\mathbf{$1}$0
+endsnippet
+# Math text
+snippet mrm "Text in math"
+\mathrm{$1} $0
+endsnippet
 
-snippet alp "alpha" w
-\\alpha$0
+# GREEK LETTER SNIPPETS
+context "math()"
+snippet alp "alpha" wA
+\\alpha $0
 endsnippet
-snippet bet "beta" w
-\\beta$0
+context "math()"
+snippet bet "beta" wA
+\\beta $0
 endsnippet
-snippet gam "gamma" w
-\\gamma$0
+context "math()"
+snippet gam "gamma" wA
+\\gamma $0
 endsnippet
-snippet del "delta" w
-\\delta$0
+context "math()"
+snippet del "delta" wA
+\\delta $0
 endsnippet
-snippet eps "epsilon" w
-\\epsilon$0
+context "math()"
+snippet eps "epsilon" wA
+\\epsilon $0
 endsnippet
-snippet the "theta" w
-\\theta$0
+context "math()"
+snippet the "theta" wA
+\\theta $0
 endsnippet
-snippet lam "lambda" w
-\\lambda$0
+context "math()"
+snippet lam "lambda" wA
+\\lambda $0
 endsnippet
-snippet mu "mu" w
-\\mu$0
+context "math()"
+snippet mu "mu" wA
+\\mu $0
 endsnippet
-snippet nu "nu" w
-\\nu$0
+context "math()"
+snippet nu "nu" wA
+\\nu $0
 endsnippet
-snippet pi "pi" w
-\\pi$0
+context "math()"
+snippet pi "pi" wA
+\\pi $0
 endsnippet
-snippet tau "tau" w
-\\tau$0
+context "math()"
+snippet tau "tau" wA
+\\tau $0
 endsnippet
-snippet rho "rho" w
-\\rho$0
+context "math()"
+snippet rho "rho" wA
+\\rho $0
 endsnippet
-snippet sig "sigma" w
-\\sigma$0
+context "math()"
+snippet sig "sigma" wA
+\\sigma $0
 endsnippet
-snippet tau "tau" w
-\\tau$0
+context "math()"
+snippet phi "phi" wA
+\\phi $0
 endsnippet
-snippet phi "phi" w
-\\phi$0
+context "math()"
+snippet ome "omega" wA
+\\omega $0
 endsnippet
-snippet ome "omega" w
-\\omega$0
+context "math()"
+snippet zet "zeta" wA
+\\zeta $0
 endsnippet
 # Capital Greek alphabet
-snippet Alp "Alpha" w
-\\Alpha$0
+context "math()"
+snippet Alp "Alpha" wA
+\\Alpha $0
 endsnippet
-snippet Bet "Beta" w
-\\Beta$0
+context "math()"
+snippet Bet "Beta" wA
+\\Beta $0
 endsnippet
-snippet Gam "Gamma" w
-\\Gamma$0
+context "math()"
+snippet Gam "Gamma" wA
+\\Gamma $0
 endsnippet
-snippet Del "Delta" w
-\\Delta$0
+context "math()"
+snippet Del "Delta" wA
+\\Delta $0
 endsnippet
-snippet Eps "Epsilon" w
-\\Epsilon$0
+context "math()"
+snippet Eps "Epsilon" wA
+\\Epsilon $0
 endsnippet
-snippet The "Theta" w
-\\Theta$0
+context "math()"
+snippet The "Theta" wA
+\\Theta $0
 endsnippet
-snippet Lam "Lambda" w
-\\Lambda$0
+context "math()"
+snippet Lam "Lambda" wA
+\\Lambda $0
 endsnippet
-snippet Mu "Mu" w
-\\Mu$0
+context "math()"
+snippet Mu "Mu" wA
+\\Mu $0
 endsnippet
-snippet Nu "Nu" w
-\\Nu$0
+context "math()"
+snippet Nu "Nu" wA
+\\Nu $0
 endsnippet
-snippet Pi "Pi" w
-\\Pi$0
+context "math()"
+snippet Pi "Pi" wA
+\\Pi $0
 endsnippet
-snippet Tau "Tau" w
-\\Tau$0
+context "math()"
+snippet Tau "Tau" wA
+\\Tau $0
 endsnippet
-snippet Rho "Rho" w
-\\Rho$0
+context "math()"
+snippet Rho "Rho" wA
+\\Rho $0
 endsnippet
-snippet Sig "Sigma" w
-\\Sigma$0
+context "math()"
+snippet Sig "Sigma" wA
+\\Sigma $0
 endsnippet
-snippet Tau "Tau" w
-\\Tau$0
+context "math()"
+snippet Tau "Tau" wA
+\\Tau $0
 endsnippet
-snippet Phi "Phi" w
-\\Phi$0
+context "math()"
+snippet Phi "Phi" wA
+\\Phi $0
 endsnippet
-snippet Ome "Omega" w
-\\Omega$0
+context "math()"
+snippet Ome "Omega" wA
+\\Omega $0
+endsnippet
+context "math()"
+snippet Zet "Zeta" wA
+\\Zeta $0
 endsnippet
 
 # gillescastel snippets
@@ -504,6 +550,10 @@ snippet dxdt "dx/dt" w
 \frac{\mathrm{d}$1}{\mathrm{d}t}$0
 endsnippet
 
+snippet dxdy "dx/dy" w
+\frac{\mathrm{d}$1}{\mathrm{d}$2}$0
+endsnippet
+
 snippet ddt "d/dt" w
 \frac{\mathrm{d}}{\mathrm{d}t}$0
 endsnippet
@@ -677,7 +727,7 @@ endsnippet
 
 priority 200
 context "math()"
-snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "ln" rwA
+snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|int)' "ln" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
@@ -697,6 +747,11 @@ endsnippet
 context "math()"
 snippet !> "mapsto" iA
 \mapsto 
+endsnippet
+
+context "math()"
+snippet tra "transpose" iA
+^{T}
 endsnippet
 
 context "math()"
