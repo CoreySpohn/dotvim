@@ -91,6 +91,7 @@ silent! set breakindent
 nnoremap <C-s> :set spell spelllang=en_us<CR>
 autocmd FileType text setlocal spell spelllang=en_us
 autocmd FileType tex setlocal spell spelllang=en_us
+autocmd FileType anki_vim setlocal spell spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 "set spell spelllang = en_us
 
