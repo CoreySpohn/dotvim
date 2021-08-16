@@ -64,6 +64,8 @@ Plug 'lervag/vimtex'
 " Indents
 Plug 'Vimjas/vim-python-pep8-indent'
 
+" Tree-sitter syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
@@ -91,7 +93,6 @@ silent! set breakindent
 nnoremap <C-s> :set spell spelllang=en_us<CR>
 autocmd FileType text setlocal spell spelllang=en_us
 autocmd FileType tex setlocal spell spelllang=en_us
-autocmd FileType anki_vim setlocal spell spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 "set spell spelllang = en_us
 
@@ -128,6 +129,7 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 " Wrap text after a certain number of characters
 au BufRead,BufNewFile *.txt set textwidth=100
 au BufRead,BufNewFile *.tex set textwidth=100
+au BufRead,BufNewFile *.md set textwidth=100
 
 " Buffer finder help
 nmap <Leader>b :Buffers<CR>
@@ -241,6 +243,5 @@ let g:UltiSnipsSnippetDirectories = [('~/.vim/UltiSnips')]
 "nnoremap <leader>es :UltiSnipsEdit!<cr>
 
 
-"
-" MACROS
-"
+" neovim stuff
+
