@@ -1,4 +1,11 @@
 {
+  "diagnostic.enableHighlightLineNumber": true,
+  "diagnostic.enableMessage": "jump",
+  "diagnostic.enableSign": true,
+  "diagnostic.errorSign": "✖",
+  "diagnostic.warningSign": "!",
+  "diagnostic.hintSign": "➤",
+  "diagnostic.infoSign": "ℹ",
   "suggest.enablePreview": true,
   "suggest.minTriggerInputLength": 3,
   "suggest.removeDuplicateItems": true,
