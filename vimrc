@@ -7,6 +7,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+"let g:ale_disable_lsp = 1
+
 " Add the vim-plug stuff
 call plug#begin('~/.vim/plugged')
 
@@ -50,10 +52,13 @@ Plug 'preservim/nerdcommenter'
 Plug 'luochen1990/rainbow'
 
 " ALE
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 
 " coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Plugin: Linting
+Plug 'puremorning/vimspector'
 
 " Black
 "Plug 'psf/black', { 'branch': 'stable' } 
@@ -172,16 +177,21 @@ let g:ale_linters = {
             \'tex': ['lacheck', 'chktex']}
 
 " To add more just make it '--disable C0301, C0111, ...' no need for a list
-let g:ale_python_pylint_options = '--disable C0301' 
-let g:ale_sign_error = '●'
-let g:ale_sign_warning = '.'
-nmap <silent> <C-e> <Plug>(ale_next_wrap)
+"let g:ale_lint_on_text_changed = 'never'
+"let g:ale_lint_on_insert_leave = 0
+"let g:ale_lint_on_enter = 1
+"let g:ale_python_pylint_options = '--disable C0301' 
+"let g:ale_sign_error = '●'
+"let g:ale_sign_warning = '.'
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Coc.nvim settings from vimtex guy
 let g:coc_global_extensions = [
         \ 'coc-vimtex',
         \ 'coc-omni',
         \ 'coc-snippets',
+        \ 'coc-python',
         \ 'coc-pyright',
         \ 'coc-json',
         \ 'coc-ultisnips',
@@ -191,6 +201,10 @@ inoremap <expr><cr>    pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 "inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
 "inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 inoremap <silent><expr> <c-space> coc#refresh()
+
+" Jump to error with coc
+nmap <silent> <C-k> <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <C-j> <Plug>(coc-diagnostic-next-error)
 
 
 nmap <silent> <leader>ld <plug>(coc-definition)zv
