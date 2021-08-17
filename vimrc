@@ -205,6 +205,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Jump to error with coc
 nmap <silent> <C-k> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-j> <Plug>(coc-diagnostic-next-error)
+nmap <silent> <A-k> <Plug>(coc-diagnostic-prev)
+nmap <silent> <A-j> <Plug>(coc-diagnostic-next)
 
 
 nmap <silent> <leader>ld <plug>(coc-definition)zv
@@ -214,8 +216,6 @@ nmap <silent> <leader>la <plug>(coc-implementation)
 nmap <silent> <leader>la <plug>(coc-codeaction-selected)
 xmap <silent> <leader>la <plug>(coc-codeaction-selected)
 
-nmap <silent> <leader>lp <plug>(coc-diagnostic-prev)
-nmap <silent> <leader>ln <plug>(coc-diagnostic-next)
 nmap <silent> <leader>lk :<c-u>call CocAction('doHover')<cr>
 
 nnoremap <silent> K :call <sid>show_documentation()<cr>
