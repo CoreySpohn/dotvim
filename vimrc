@@ -40,7 +40,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 "Plugin with lots of snippets
-Plug 'honza/vim-snippets'
+"Plug 'honza/vim-snippets'
 
 " UtilSnips
 Plug 'SirVer/ultisnips'
@@ -58,7 +58,7 @@ Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Plugin: Linting
-Plug 'puremorning/vimspector'
+"Plug 'puremorning/vimspector'
 
 " Black
 "Plug 'psf/black', { 'branch': 'stable' } 
