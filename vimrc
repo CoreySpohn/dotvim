@@ -59,7 +59,9 @@ Plug 'lervag/vimtex'
 Plug 'Vimjas/vim-python-pep8-indent'
 
 " Tree-sitter syntax highlighting
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+endif
 
 call plug#end()
 
