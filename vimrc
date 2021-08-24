@@ -1,12 +1,6 @@
 set nocompatible              " required
 filetype off                  " required
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 " Add the vim-plug stuff
 call plug#begin('~/.vim/plugged')
 
@@ -20,8 +14,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'flazz/vim-colorschemes'
 
 " Folding help
-Plug 'Konfekt/FastFold'
-Plug 'kalekundert/vim-coiled-snake'
+"Plug 'Konfekt/FastFold'
+"Plug 'kalekundert/vim-coiled-snake'
 
 " Status bar
 Plug 'vim-airline/vim-airline'
@@ -65,6 +59,10 @@ endif
 
 call plug#end()
 
+" Folding stuff
+"set foldlevelstart=0
+"set foldcolumn=0
+"set foldtext=personal#fold#foldtext()
 
 " Numbers
 set number
@@ -223,6 +221,16 @@ let g:UltiSnipsSnippetDirectories = [('~/.vim/UltiSnips')]
 
 "nnoremap <leader>es :UltiSnipsEdit!<cr>
 
+" plugin: FastFold
+"let g:fastfold_savehook=1
+"let g:fastfold_fold_command_suffixes = ['x', 'X', 'M', 'R']
+"let g:fastfold_fold_movement_commands = []
+
+"" plugin: vim-coiled-snake
+"let g:coiled_snake_foldtext_flags = []
 
 " neovim stuff
-
+if has('nvim')
+    set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
+endif
