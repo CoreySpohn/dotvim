@@ -11,7 +11,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 
 " Vim colorschemes
-"Plug 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 Plug 'arcticicestudio/nord-vim'
 
 " Folding help
@@ -104,6 +104,7 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Colorscheme
 set termguicolors
+"colorscheme molokai
 colorscheme nord
 "let g:molokai_original = 1
 "set background=dark
