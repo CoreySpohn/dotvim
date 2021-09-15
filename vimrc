@@ -11,7 +11,8 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 
 " Vim colorschemes
-Plug 'flazz/vim-colorschemes'
+"Plug 'flazz/vim-colorschemes'
+Plug 'arcticicestudio/nord-vim'
 
 " Folding help
 "Plug 'Konfekt/FastFold'
@@ -102,13 +103,14 @@ nmap <leader>gu :diffget //2<CR>
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Colorscheme
-colorscheme molokai
-let g:molokai_original = 1
-set background=dark
+set termguicolors
+colorscheme nord
+"let g:molokai_original = 1
+"set background=dark
 
 " Status bar
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'molokai'
+let g:airline_theme = 'nord'
 "let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_powerline_fonts = 1
 
