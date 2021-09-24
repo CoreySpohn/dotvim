@@ -58,6 +58,8 @@ if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 
+Plug 'jlanzarotta/bufexplorer'
+
 call plug#end()
 
 " Folding stuff
@@ -105,7 +107,8 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 " Colorscheme
 set termguicolors
 "colorscheme molokai
-colorscheme nord
+"colorscheme nord
+colorscheme gruvbox
 "let g:molokai_original = 1
 "set background=dark
 
