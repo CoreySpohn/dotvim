@@ -157,10 +157,15 @@ let g:pydocstring_formatter = 'google'
 
 " vimtex setting
 let g:tex_flavor = 'latex'
-let g:vimtex_view_method='zathura'
+let g:vimtex_view_general_viewer='okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
 let g:vimtex_compiler_latexmk = {
             \ 'build_dir' : 'build',
             \}
+"let g:vimtex_compiler_latexmk_engines = {
+            "\ 'pdflatex' : '-pdf',
+            "\}
 let g:vimtex_fold_enabled = 1
 set conceallevel=1
 let g:tex_conceal='abdmg'
