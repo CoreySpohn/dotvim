@@ -29,9 +29,16 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-surround'
 
 "fzf
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf'
+"Plug 'junegunn/fzf.vim'
 
+"Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'nvim-telescope/telescope-frecency.nvim'
+
+"
 "Plugin with lots of snippets
 Plug 'honza/vim-snippets'
 
@@ -59,6 +66,15 @@ if has('nvim')
 endif
 
 Plug 'jlanzarotta/bufexplorer'
+
+if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-lua/plenary.nvim'  " required
+    Plug 'hrsh7th/nvim-cmp'       " optional, for completion
+    Plug 'godlygeek/tabular'      " optional, needed for 'preservim/vim-markdown'
+    Plug 'preservim/vim-markdown' " optional, recommended for syntax highlighting, folding, etc if you're not using nvim-treesitter
+    Plug 'epwalsh/obsidian.nvim'
+endif
 
 call plug#end()
 
@@ -94,7 +110,19 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 "set spell spelllang = en_us
 
 " FZF fuzzy finder
-nnoremap <leader>s :<C-u>FZF~<CR>
+"nnoremap <leader>s :<C-u>FZF~<CR>
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using Lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " Git integration
 nmap <leader>gs :G<CR>
@@ -157,11 +185,19 @@ let g:pydocstring_formatter = 'google'
 
 " vimtex setting
 let g:tex_flavor = 'latex'
-let g:vimtex_view_general_viewer='okular'
+"let g:vimtex_view_general_viewer='zathura'
+let g:vimtex_view_method='zathura'
 let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
+"let g:vimtex_view_general_options_latexmk = '--unique'
 let g:vimtex_compiler_latexmk = {
             \ 'build_dir' : 'build',
+            \ 'options' : [
+            \   '-verbose',
+            \   '-shell-escape',
+            \   '-file-line-error',
+            \   '-synctex=1',
+            \   '-interaction=nonstopmode',
+            \ ],
             \}
 "let g:vimtex_compiler_latexmk_engines = {
             "\ 'pdflatex' : '-pdf',
