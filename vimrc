@@ -71,8 +71,8 @@ if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-lua/plenary.nvim'  " required
     Plug 'hrsh7th/nvim-cmp'       " optional, for completion
-    Plug 'godlygeek/tabular'      " optional, needed for 'preservim/vim-markdown'
-    Plug 'preservim/vim-markdown' " optional, recommended for syntax highlighting, folding, etc if you're not using nvim-treesitter
+    "Plug 'godlygeek/tabular'      " optional, needed for 'preservim/vim-markdown'
+    "Plug 'preservim/vim-markdown' " optional, recommended for syntax highlighting, folding, etc if you're not using nvim-treesitter
     Plug 'epwalsh/obsidian.nvim'
 endif
 
