@@ -1,0 +1,5 @@
+{
+  "comment": "Run '<cmd>LspSettings pyright' and then enter the entries below",
+  "python.venvPath": "./.venv",
+  "python.analysis.typeCheckingMode": "off"
+}
