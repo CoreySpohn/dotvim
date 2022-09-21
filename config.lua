@@ -110,10 +110,10 @@ lvim.lsp.installer.setup.ensure_installed = {
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
--- local opts = { settings = { python = { analysis = { typeCheckingMode = "off" } } } } -- check the lspconfig documentation for a list of all possible options
-local opts = {} -- check the lspconfig documentation for a list of all possible options
-require("lvim.lsp.manager").setup("pyright", opts)
+--vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+--local opts = { settings = { python = { analysis = { typeCheckingMode = "off" } } } } -- check the lspconfig documentation for a list of all possible options
+-- local opts = {} -- check the lspconfig documentation for a list of all possible options
+--require("lvim.lsp.manager").setup("pyright", opts)
 -- require("lspconfig")["pyright"].setup(opts)
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
