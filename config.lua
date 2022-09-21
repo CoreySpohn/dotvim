@@ -85,10 +85,12 @@ lvim.builtin.treesitter.ensure_installed = {
   "rust",
   "java",
   "yaml",
+  "markdown"
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.treesitter.highlight.additional_vim_regex_highlighting = { "markdown" }
 
 -- generic LSP settings
 
