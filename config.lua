@@ -13,6 +13,8 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "gruvbox"
 vim.opt.relativenumber = true
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -175,11 +177,11 @@ lvim.plugins = {
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.json", "*.jsonc" },
---   -- enable wrap mode for json files only
---   command = "setlocal wrap",
--- })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.json", "*.jsonc" },
+  -- enable wrap mode for json files only
+  command = "setlocal wrap",
+})
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
 --   callback = function()
