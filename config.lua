@@ -170,6 +170,9 @@ linters.setup {
 lvim.plugins = {
   { "flazz/vim-colorschemes" },
   { "tpope/vim-fugitive" },
+  { "tpope/vim-surround" },
+  { "epwalsh/obsidian.nvim" },
+  { "lervag/vimtex" },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
