@@ -180,12 +180,19 @@ lvim.plugins = {
     cmd = "TroubleToggle",
   },
 }
-
+vim.cmd [[let g:vimtex_view_method = "zathura"]]
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.json", "*.jsonc" },
   -- enable wrap mode for json files only
   command = "setlocal wrap",
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.tex" },
+  -- enable spell check in tex file
+  callback = function()
+    vim.cmd [[set spell spelllang=en_us]]
+  end
 })
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
