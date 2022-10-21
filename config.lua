@@ -181,6 +181,17 @@ lvim.plugins = {
   },
 }
 vim.cmd [[let g:vimtex_view_method = "zathura"]]
+vim.cmd [[let g:vimtex_compiler_latexmk = {
+            \ 'build_dir' : 'build',
+            \ 'options' : [
+            \   '-verbose',
+            \   '-shell-escape',
+            \   '-file-line-error',
+            \   '-synctex=1',
+            \   '-interaction=nonstopmode',
+            \ ],
+            \}
+]]
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.json", "*.jsonc" },
