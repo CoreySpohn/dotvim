@@ -9,7 +9,7 @@ an executable
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
-lvim.log.level = "warn"
+lvim.log.level = "info"
 lvim.format_on_save = true
 lvim.colorscheme = "gruvbox"
 vim.opt.relativenumber = true
@@ -97,9 +97,9 @@ lvim.builtin.treesitter.highlight.additional_vim_regex_highlighting = { "markdow
 
 -- -- make sure server will always be installed even if the server is in skipped_servers list
 lvim.lsp.installer.setup.ensure_installed = {
-  "lua_ls",
+  "sumneko_lua",
   "jsonls",
-  "ruff_lsp"
+  "pyright"
 }
 -- change UI setting of `LspInstallInfo`
 -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
@@ -111,23 +111,23 @@ lvim.lsp.installer.setup.ensure_installed = {
 -- }
 
 -- ---@usage disable automatic installation of servers
-lvim.lsp.installer.setup.automatic_installation = false
+-- lvim.lsp.installer.setup.automatic_installation = false
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
--- local opts = { settings = { python = { analysis = { typeCheckingMode = "off" } } } } -- check the lspconfig documentation for a list of all possible options
+local opts = { settings = { python = { analysis = { typeCheckingMode = "off" } } } } -- check the lspconfig documentation for a list of all possible options
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
--- require("lspconfig")["ruff_lsp"].setup(opts)
-require 'lspconfig'.ruff_lsp.setup {
-  init_options = {
-    settings = {
-      -- Any extra CLI arguments for `ruff` go here.
-      args = {},
-    }
-  }
-}
+require("lspconfig")["pyright"].setup(opts)
+-- require 'lspconfig'.ruff_lsp.setup {
+--   init_options = {
+--     settings = {
+--       -- Any extra CLI arguments for `ruff` go here.
+--       args = {},
+--     }
+--   }
+-- }
 
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
@@ -137,6 +137,11 @@ require 'lspconfig'.ruff_lsp.setup {
 -- end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
+-- lvim.builtin.cmp.completion.keyword_length = 2
+-- lvim.builtin.telescope.defaults.layout_config.width = 0.95
+-- lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
+-- lvim.builtin.cmp.completion.completeopt = "menu,menuone"
+-- lvim.builtin.cmp.completion.keyword_length = 0
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
 -- lvim.lsp.on_attach_callback = function(client, bufnr)
 --   local function buf_set_option(...)
@@ -165,10 +170,10 @@ formatters.setup {
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  -- { command = "ruff",
-  --   filetypes = { "python" },
-  --   -- extra_args = { "--max-line-length=88" }
-  -- },
+  -- In ~/.local/share/lunarvim/lvim/snapshots/default.json change null-ls commit to 602597d
+  { command = "ruff",
+    filetypes = { "python" }
+  },
   {
     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "shellcheck",
