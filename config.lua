@@ -52,7 +52,7 @@ lvim.keys.insert_mode["kj"] = false
 -- }
 
 -- Use which-key to add extra bindings with the leader-key prefix
-lvim.builtin.which_key.mappings["gg"] = { "<cmd>Git <CR>", "vim-fugitive" }
+lvim.builtin.which_key.mappings.gg = { "<cmd>Git <CR>", "vim-fugitive" }
 -- lvim.builtin.which_key.mappings["t"] = {
 --   name = "+Trouble",
 --   r = { "<cmd>Trouble lsp_references<cr>", "References" },
@@ -99,7 +99,7 @@ lvim.builtin.treesitter.highlight.additional_vim_regex_highlighting = { "markdow
 lvim.lsp.installer.setup.ensure_installed = {
   "lua_ls",
   "jsonls",
-  "pyright"
+  "ruff_lsp"
 }
 -- change UI setting of `LspInstallInfo`
 -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
@@ -111,15 +111,24 @@ lvim.lsp.installer.setup.ensure_installed = {
 -- }
 
 -- ---@usage disable automatic installation of servers
--- lvim.lsp.installer.setup.automatic_installation = false
+lvim.lsp.installer.setup.automatic_installation = false
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
---vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
-local opts = { settings = { python = { analysis = { typeCheckingMode = "off" } } } } -- check the lspconfig documentation for a list of all possible options
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+-- local opts = { settings = { python = { analysis = { typeCheckingMode = "off" } } } } -- check the lspconfig documentation for a list of all possible options
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
-require("lvim.lsp.manager").setup("pyright", opts)
--- require("lspconfig")["pyright"].setup(opts)
+-- require("lvim.lsp.manager").setup("pyright", opts)
+-- require("lspconfig")["ruff_lsp"].setup(opts)
+require 'lspconfig'.ruff_lsp.setup {
+  init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = {},
+    }
+  }
+}
+
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
@@ -156,10 +165,10 @@ formatters.setup {
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { command = "ruff",
-    filetypes = { "python" },
-    -- extra_args = { "--max-line-length=88" }
-  },
+  -- { command = "ruff",
+  --   filetypes = { "python" },
+  --   -- extra_args = { "--max-line-length=88" }
+  -- },
   {
     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "shellcheck",
