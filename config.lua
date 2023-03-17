@@ -67,7 +67,7 @@ lvim.builtin.which_key.mappings["gg"] = { "<cmd>Git <CR>", "vim-fugitive" }
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
+-- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
@@ -97,7 +97,7 @@ lvim.builtin.treesitter.highlight.additional_vim_regex_highlighting = { "markdow
 
 -- -- make sure server will always be installed even if the server is in skipped_servers list
 lvim.lsp.installer.setup.ensure_installed = {
-  "sumeko_lua",
+  "lua_ls",
   "jsonls",
   "pyright"
 }
@@ -116,9 +116,9 @@ lvim.lsp.installer.setup.ensure_installed = {
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
 --vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
---local opts = { settings = { python = { analysis = { typeCheckingMode = "off" } } } } -- check the lspconfig documentation for a list of all possible options
+local opts = { settings = { python = { analysis = { typeCheckingMode = "off" } } } } -- check the lspconfig documentation for a list of all possible options
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
---require("lvim.lsp.manager").setup("pyright", opts)
+require("lvim.lsp.manager").setup("pyright", opts)
 -- require("lspconfig")["pyright"].setup(opts)
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
@@ -156,9 +156,9 @@ formatters.setup {
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { command = "flake8",
+  { command = "ruff",
     filetypes = { "python" },
-    extra_args = { "--max-line-length=88" }
+    -- extra_args = { "--max-line-length=88" }
   },
   {
     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
