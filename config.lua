@@ -27,41 +27,8 @@ lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 lvim.keys.insert_mode["jk"] = false
 lvim.keys.insert_mode["kj"] = false
 
-
--- unmap a default keymapping
--- vim.keymap.del("n", "<C-Up>")
--- override a default keymapping
-
-
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
--- local _, actions = pcall(require, "telescope.actions")
--- lvim.builtin.telescope.defaults.mappings = {
---   -- for input mode
---   i = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---     ["<C-n>"] = actions.cycle_history_next,
---     ["<C-p>"] = actions.cycle_history_prev,
---   },
---   -- for normal mode
---   n = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---   },
--- }
-
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings.gg = { "<cmd>Git <CR>", "vim-fugitive" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
--- }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -101,55 +68,13 @@ lvim.lsp.installer.setup.ensure_installed = {
   "jsonls",
   "pyright"
 }
--- change UI setting of `LspInstallInfo`
--- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
--- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
--- lvim.lsp.installer.setup.ui.border = "rounded"
--- lvim.lsp.installer.setup.ui.keymaps = {
---   uninstall_server = "d",
---   toggle_server_expand = "o",
--- }
-
--- ---@usage disable automatic installation of servers
--- lvim.lsp.installer.setup.automatic_installation = false
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
--- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
-local opts = { settings = { python = { analysis = { typeCheckingMode = "off" } } } } -- check the lspconfig documentation for a list of all possible options
--- local opts = {} -- check the lspconfig documentation for a list of all possible options
--- require("lvim.lsp.manager").setup("pyright", opts)
+-- check the lspconfig documentation for a list of all possible options
+local opts = { settings = { python = { analysis = { typeCheckingMode = "off" } } } }
 require("lspconfig")["pyright"].setup(opts)
--- require 'lspconfig'.ruff_lsp.setup {
---   init_options = {
---     settings = {
---       -- Any extra CLI arguments for `ruff` go here.
---       args = {},
---     }
---   }
--- }
 
-
--- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
--- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
--- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
---   return server ~= "emmet_ls"
--- end, lvim.lsp.automatic_configuration.skipped_servers)
-
--- -- you can set a custom on_attach function that will be used for all the language servers
--- lvim.builtin.cmp.completion.keyword_length = 2
--- lvim.builtin.telescope.defaults.layout_config.width = 0.95
--- lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
--- lvim.builtin.cmp.completion.completeopt = "menu,menuone"
--- lvim.builtin.cmp.completion.keyword_length = 0
--- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
--- lvim.lsp.on_attach_callback = function(client, bufnr)
---   local function buf_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---   --Enable completion triggered by <c-x><c-o>
---   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
--- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -188,12 +113,25 @@ lvim.plugins = {
   { "flazz/vim-colorschemes" },
   { "tpope/vim-fugitive" },
   { "tpope/vim-surround" },
-  { "epwalsh/obsidian.nvim" },
   { "lervag/vimtex" },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  }
 }
 vim.cmd [[let g:vimtex_view_method = "zathura"]]
 vim.cmd [[let g:vimtex_compiler_latexmk = {
@@ -220,10 +158,3 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.cmd [[set spell spelllang=en_us]]
   end
 })
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "zsh",
---   callback = function()
---     -- let treesitter use bash highlight for zsh files as well
---     require("nvim-treesitter.highlight").attach(0, "bash")
---   end,
--- })
